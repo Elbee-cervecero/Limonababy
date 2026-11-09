@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Billy Bob Brouwers Ardovino</title>
+<meta name="description" content="Simona and Lieven welcome Billy Bob. A birth list, a diaper fund and a good cause.">
+<meta property="og:title" content="Billy Bob Brouwers Ardovino">
+<meta property="og:description" content="Simona and Lieven welcome Billy Bob. Three ways to celebrate with us.">
+<meta property="og:image" content="img/facade.webp">
+<link rel="icon" href="img/red-a.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600..800,100,1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#20979C; --teal-deep:#0E5E63; --coral:#E36D65; --brick:#C24D46;
+  --yellow:#FFEB1B; --cream:#FCF2DD; --pink:#F4B9A9; --white:#fff;
+  --display:'Fraunces',Georgia,serif; --body:'Comfortaa','Trebuchet MS',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--white);color:var(--teal-deep);font:500 1rem/1.65 var(--body);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--teal-deep);outline-offset:4px;border-radius:10px}
+h1,h2,h3{font-family:var(--display);font-variation-settings:'SOFT' 100,'WONK' 1;font-weight:800;line-height:1.1}
+
+/* painted sprigs, cut edges sit off-screen */
+.flora{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.flora img{position:absolute;display:block;height:auto}
+.f-top{top:-30px;right:0;width:clamp(170px,38vw,330px)}
+.f-left{top:640px;left:-14px;width:clamp(60px,9vw,110px)}
+.f-mid{top:1180px;right:0;width:clamp(110px,22vw,230px)}
+.f-red-a{top:880px;left:-34px;width:clamp(80px,12vw,130px)}
+.f-red-b{top:1500px;right:-30px;width:clamp(70px,10vw,110px)}
+.f-bottom-l{bottom:0;left:-30px;width:clamp(200px,42vw,380px)}
+.f-bottom-r{bottom:0;right:-40px;width:clamp(150px,30vw,300px);transform:scaleX(-1)}
+
+.page{position:relative;min-height:100vh}
+main{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:44px 22px clamp(240px,34vw,340px);
+  display:grid;gap:56px;grid-template-areas:"hero" "links" "cause" "sign" "facade"}
+.hero{grid-area:hero}
+.links{grid-area:links}
+.cause{grid-area:cause}
+.sign{grid-area:sign}
+.facade{grid-area:facade}
+@media(min-width:900px){
+  main{grid-template-columns:minmax(0,1fr) 340px;column-gap:64px;padding-top:64px;
+    grid-template-areas:"hero facade" "links facade" "cause facade" "sign facade";grid-template-rows:auto auto auto 1fr;align-items:start}
+}
+
+/* hero */
+.hero .name{width:min(100%,520px);height:auto;display:block}
+.hero .stats{margin-top:22px}
+.hero .date{font:800 clamp(1.7rem,6vw,2.3rem)/1.1 var(--display);font-variation-settings:'SOFT' 100,'WONK' 1;color:var(--coral)}
+.hero .size{font:700 1.15rem var(--display);font-variation-settings:'SOFT' 100,'WONK' 1;color:var(--teal);margin-top:4px}
+.hero .thanks{margin-top:22px;max-width:34ch;font-size:1.05rem}
+
+/* facade */
+.facade{justify-self:center;width:min(100%,300px);align-self:start}
+@media(min-width:900px){.facade{position:sticky;top:28px;width:100%}}
+.facade img{width:100%;height:auto;display:block;border-radius:6px;box-shadow:0 18px 40px -22px rgba(14,94,99,.45)}
+
+/* three windows */
+.links h2{font-size:clamp(1.5rem,4.5vw,1.9rem);color:var(--teal);margin-bottom:22px}
+.windows{display:grid;gap:22px;grid-template-columns:1fr}
+@media(min-width:560px){.windows{grid-template-columns:repeat(3,1fr);gap:16px}}
+.window{display:flex;flex-direction:column;text-decoration:none;background:var(--cream);border-radius:26px 26px 18px 18px;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease}
+.window:hover{transform:translateY(-4px);box-shadow:0 14px 28px -18px rgba(14,94,99,.55)}
+.window img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block}
+.window .text{display:flex;flex-direction:column;flex:1;padding:16px 16px 18px}
+.window h3{font-size:1.35rem;color:var(--teal)}
+.window p{font-size:.92rem;line-height:1.55;margin:6px 0 14px;flex:1}
+.btn{align-self:flex-start;display:inline-block;background:var(--brick);color:#fff;text-decoration:none;font:700 .95rem var(--body);padding:10px 18px;border-radius:999px}
+.window .btn{pointer-events:none}
+@media(max-width:559px){
+  .window{flex-direction:row;border-radius:22px 22px 18px 18px}
+  .window img{width:42%;aspect-ratio:auto;height:auto;align-self:stretch}
+}
+
+/* good cause */
+.cause{background:var(--cream);border-radius:30px;padding:30px 22px}
+@media(min-width:560px){.cause{padding:38px 36px}}
+.cause h2{font-size:clamp(1.6rem,5vw,2.1rem);color:var(--teal);margin-bottom:14px}
+.cause p{max-width:62ch;margin-bottom:12px}
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}
+.photos figure{aspect-ratio:3/4;border-radius:999px 999px 14px 14px;overflow:hidden;position:relative;background:linear-gradient(160deg,var(--yellow) 0,var(--pink) 100%)}
+.photos img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+.sign{margin-top:-24px;font:800 1.25rem var(--display);font-variation-settings:'SOFT' 100,'WONK' 1;color:var(--teal)}
+.sign span{color:var(--coral)}
+@media(prefers-reduced-motion:reduce){.window{transition:none}.window:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="flora" aria-hidden="true">
+  <img class="f-top" src="img/sprig-right-b.webp" alt="">
+  <img class="f-left" src="img/sprig-left.webp" alt="">
+  <img class="f-red-a" src="img/red-a.webp" alt="">
+  <img class="f-mid" src="img/sprig-right-a.webp" alt="">
+  <img class="f-red-b" src="img/red-b.webp" alt="">
+  <img class="f-bottom-l" src="img/sprig-bottom.webp" alt="">
+  <img class="f-bottom-r" src="img/sprig-bottom.webp" alt="">
+</div>
+
+<main>
+
+  <header class="hero">
+    <!-- The name is vector lettering taken from the birth card -->
+    <img class="name" src="img/name.svg" alt="Simona and Lieven welcome Billy Bob Brouwers Ardovino">
+    <div class="stats">
+      <p class="date">November 20, 2026</p>
+      <p class="size">3300 grams &nbsp;&middot;&nbsp; 49 cm</p>
+    </div>
+    <p class="thanks">Thank you for sharing this with us. Here are three ways to celebrate Billy Bob.</p>
+  </header>
+
+  <section class="links" aria-labelledby="links-title">
+    <h2 id="links-title">Gift ideas</h2>
+    <div class="windows">
+      <a class="window" href="https://REPLACE-WITH-YOUR-BIRTH-LIST-LINK">
+        <img src="img/peonies.webp" alt="" width="541" height="676">
+        <span class="text">
+          <h3>Birth list</h3>
+          <p>Everything we picked out for Billy Bob, in one shop.</p>
+          <span class="btn">Open the list</span>
+        </span>
+      </a>
+      <a class="window" href="https://REPLACE-WITH-YOUR-DIAPER-FUND-LINK">
+        <img src="img/baby.webp" alt="" width="491" height="613">
+        <span class="text">
+          <h3>Diaper fund</h3>
+          <p>Give a pack of diapers, or a few euros towards them.</p>
+          <span class="btn">Chip in</span>
+        </span>
+      </a>
+      <a class="window" href="#cause">
+        <img src="img/cat.webp" alt="" width="409" height="510">
+        <span class="text">
+          <h3>A good cause</h3>
+          <p>Rather give to children who need it more? Read about the orphanage we support.</p>
+          <span class="btn">Read more</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section class="cause" id="cause" aria-labelledby="cause-title">
+    <h2 id="cause-title">Helping children in South Africa</h2>
+    <p>[Orphanage name] in [town], South Africa, is home to [number] children. [Two or three sentences on who runs it and what they need most, such as school fees, food or beds.]</p>
+    <p>[One sentence on why this place matters to you.]</p>
+    <div class="photos">
+      <!-- Put your photos in the img folder as orphanage-1.jpg, orphanage-2.jpg, orphanage-3.jpg -->
+      <figure><img src="img/orphanage-1.jpg" alt="Children at the orphanage" onerror="this.remove()"></figure>
+      <figure><img src="img/orphanage-2.jpg" alt="The orphanage building" onerror="this.remove()"></figure>
+      <figure><img src="img/orphanage-3.jpg" alt="Children playing outside" onerror="this.remove()"></figure>
+    </div>
+    <a class="btn" href="https://REPLACE-WITH-ORPHANAGE-WEBSITE-OR-DONATION-LINK">Visit their website and donate</a>
+  </section>
+
+  <footer class="sign">With love, <span>Simona</span> &amp; <span>Lieven</span></footer>
+
+  <figure class="facade">
+    <img src="img/facade.webp" alt="Illustration of our house: two cats in the windows, peonies on the balcony, and the three of us on the first floor" width="990" height="2100">
+  </figure>
+
+</main>
+
+</div>
+</body>
+</html>
